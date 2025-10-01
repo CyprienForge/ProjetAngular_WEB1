@@ -1,0 +1,11 @@
+      <li>
+        <a 
+          [routerLink]="['/movies', movie.id]" 
+          [style.color]="vu ? 'green' : 'black'">
+          {{ movie.name }} - {{ movie.category }}
+        </a>
+
+        <button (click)="voir(movie)">
+          Vu
+        </button>
+      </li>
