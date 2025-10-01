@@ -1,0 +1,24 @@
+<app-menu></app-menu>
+
+<form [formGroup]="movieForm" (ngSubmit)="submit($event)">
+
+  <input formControlName="name" type="text" placeholder="Titre du film">
+
+  <select formControlName="actors" multiple>
+    @for(actor of actorsSelect ; track actor.id){
+      <option [ngValue]="actor.id">
+        {{ actor.name }}
+      </option>
+    }
+  </select>
+
+  <select formControlName="category">
+    @for(category of categories ; track category.id){
+      <option [ngValue]="category.id">
+        {{ category.label }}
+      </option>
+    }
+  </select>
+
+  <input type="submit" value="Créer film" [disabled]="movieForm.invalid">
+</form>

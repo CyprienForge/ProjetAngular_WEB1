@@ -1,0 +1,23 @@
+<app-menu></app-menu>
+
+<ul>
+  @if(movies.length == 0){
+    <p>
+      Aucun film !
+    </p>
+  }@else{
+    @for(movie of movies ; track movie.id){
+      <li>
+        <a 
+          [routerLink]="['/movies', movie.id]" 
+          [style.color]="vu ? 'green' : 'black'">
+          {{ movie.name }} - {{ movie.category }}
+        </a>
+
+        <button (click)="voir(movie)">
+          Vu
+        </button>
+      </li>
+    }
+  }
+</ul>

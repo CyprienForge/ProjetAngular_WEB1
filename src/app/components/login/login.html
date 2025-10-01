@@ -1,0 +1,11 @@
+<form [formGroup]="userForm" (ngSubmit)="submit($event)">
+
+    <input formControlName="login" type="text" placeholder="Login">
+    <input formControlName="password" type="text" placeholder="Mot de passe">
+
+    <input type="submit" value="Se connecter" [disabled]="userForm.invalid">
+</form>
+
+<p style="color: red">
+    {{ errorMessage }}
+</p>

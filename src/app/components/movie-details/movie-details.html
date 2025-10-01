@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+
+<p>
+    {{ movie.name }}
+    @if(!category){
+        <p>
+            Aucune catégorie ou catégorie introuvable
+        </p>
+    }@else{
+        <p>
+            {{ category.label }}
+        </p>
+    }
+    @if(actors.length == 0){
+        <p>
+            Aucun acteur ou acteur introuvable
+        </p>
+    }@else{
+        @for(actor of actors ; track actor.id){
+            <p>
+                {{ actor.name }}
+            </p>
+        }
+    }
+</p>
