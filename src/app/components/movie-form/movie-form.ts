@@ -8,10 +8,13 @@ import { Subscription } from 'rxjs';
 import { CategoryService } from '../../services/category-service';
 import { ActorService } from '../../services/actor-service';
 import { Menu } from '../menu/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-movie-form',
-  imports: [ReactiveFormsModule, Menu],
+  imports: [ReactiveFormsModule, Menu, MatButtonModule, MatSelectModule, MatInputModule],
   templateUrl: './movie-form.html',
   styleUrl: './movie-form.css'
 })
@@ -50,16 +53,6 @@ export class MovieForm {
     return this.movieForm.get('category')
   }
 
-  ngOnInit(){
-    this.sub.add(this.categoryService.getAll().subscribe({
-      next: categories => this.categories = categories
-    }))
-
-    this.sub.add(this.actorService.getAll().subscribe({
-      next: actors => this.actorsSelect = actors
-    }))
-  }
-
   submit(event: Event){
     event.preventDefault()
 
@@ -78,5 +71,19 @@ export class MovieForm {
 
     this.movieService.add(this.movie)
     this.movieForm.reset()
+  }
+
+  ngOnInit(){
+    this.sub.add(this.categoryService.getAll().subscribe({
+      next: categories => this.categories = categories
+    }))
+
+    this.sub.add(this.actorService.getAll().subscribe({
+      next: actors => this.actorsSelect = actors
+    }))
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe()
   }
 }

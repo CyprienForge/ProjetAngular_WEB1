@@ -1,11 +1,17 @@
-      <li>
-        <a 
-          [routerLink]="['/movies', movie.id]" 
-          [style.color]="vu ? 'green' : 'black'">
-          {{ movie.name }} - {{ movie.category }}
-        </a>
-
-        <button (click)="voir(movie)">
-          Vu
-        </button>
-      </li>
+<li>
+  <mat-card appearance="outlined">
+    <mat-card-header     
+            [routerLink]="['/movies', movie.id]" 
+            [style.color]="vu ? 'green' : 'black'"
+    >
+      <mat-card-title>
+            {{ movie.name }} - {{ movie.category }} 
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button matButton="elevated" (click)="voir(movie)">
+        Vu
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</li>

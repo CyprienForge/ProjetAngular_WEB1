@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { MovieService } from '../../services/film-service';
 import { Subscription } from 'rxjs';
-import { RouterLink } from '@angular/router';
 import { Menu } from '../menu/menu';
 import { MovieDisplay } from '../movie-display/movie-display';
 
 @Component({
   selector: 'app-accueil',
-  imports: [RouterLink, Menu, MovieDisplay],
+  imports: [Menu, MovieDisplay],
   templateUrl: './accueil.html',
   styleUrl: './accueil.css'
 })
@@ -27,6 +26,10 @@ export class Accueil {
       },
       error: error => console.error(error)
     }))
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe()
   }
 
 }

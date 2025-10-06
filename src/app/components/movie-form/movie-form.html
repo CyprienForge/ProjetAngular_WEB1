@@ -2,23 +2,36 @@
 
 <form [formGroup]="movieForm" (ngSubmit)="submit($event)">
 
-  <input formControlName="name" type="text" placeholder="Titre du film">
+  <mat-form-field class="example-full-width">
+    <mat-label>Titre</mat-label>
+    <input matInput placeholder="Titre du film..." formControlName="name">
+  </mat-form-field>
 
-  <select formControlName="actors" multiple>
-    @for(actor of actorsSelect ; track actor.id){
-      <option [ngValue]="actor.id">
+  <mat-form-field appearance="fill">
+    <mat-label>Acteurs</mat-label>
+    <mat-select formControlName="actors" multiple>
+      @for(actor of actorsSelect ; track actor.id){
+      <mat-option [value]="actor.id">
         {{ actor.name }}
-      </option>
+      </mat-option>
     }
-  </select>
+    </mat-select>
+  </mat-form-field>
 
-  <select formControlName="category">
-    @for(category of categories ; track category.id){
-      <option [ngValue]="category.id">
-        {{ category.label }}
-      </option>
-    }
-  </select>
+  <mat-form-field appearance="fill">
+    <mat-label>Catégories</mat-label>
+    <mat-select formControlName="category">
+      @for (category of categories; track category.id) {
+        <mat-option [value]="category.id">
+          {{ category.label }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 
-  <input type="submit" value="Créer film" [disabled]="movieForm.invalid">
+  <div class="example-button-row">
+    <button matButton="elevated" [disabled]="movieForm.invalid">
+      Créer
+    </button>
+  </div>
 </form>

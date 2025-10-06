@@ -47,4 +47,8 @@ export class MovieDetails {
       error: error => console.error(error)
     }))
   }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe()
+  }
 }

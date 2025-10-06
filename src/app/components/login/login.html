@@ -1,9 +1,20 @@
 <form [formGroup]="userForm" (ngSubmit)="submit($event)">
 
-    <input formControlName="login" type="text" placeholder="Login">
-    <input formControlName="password" type="text" placeholder="Mot de passe">
+    <mat-form-field class="example-full-width">
+        <mat-label>Identifiant</mat-label>
+        <input matInput placeholder="Identifiant..." formControlName="login">
+    </mat-form-field>
 
-    <input type="submit" value="Se connecter" [disabled]="userForm.invalid">
+    <mat-form-field class="example-full-width">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput placeholder="Mot de passe..." formControlName="password">
+    </mat-form-field>
+
+    <div class="example-button-row">
+        <button matButton="elevated" [disabled]="userForm.invalid">
+            Se connecter
+        </button>
+    </div>
 </form>
 
 <p style="color: red">

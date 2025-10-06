@@ -1,14 +1,15 @@
 <nav>
-    <ul>
-        <li>
-            <a routerLink="/accueil">
-                Accueil
-            </a>
-        </li>
-        <li>
-            <a routerLink="/add-movie">
-                Ajouter un Film
-            </a>
-        </li>
-    </ul>
+    <button matIconButton [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/accueil">
+            <mat-icon>dialpad</mat-icon>
+            <span>Accueil</span>
+        </button>
+        <button mat-menu-item routerLink="/add-movie">
+            <mat-icon>voicemail</mat-icon>
+            <span>Ajouter un film</span>
+        </button>
+    </mat-menu>
 </nav>

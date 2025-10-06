@@ -1,0 +1,9 @@
+li{
+    margin-top: 2%;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+mat-card-header{
+    cursor: pointer;
+}
