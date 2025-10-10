@@ -8,10 +8,11 @@ import { ActorService } from '../../services/actor-service';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category-service';
 import { Menu } from '../menu/menu';
+import { AddRate } from '../add-rate/add-rate';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [Menu],
+  imports: [Menu, AddRate],
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.css'
 })
@@ -37,12 +38,16 @@ export class MovieDetails {
           next: category => this.category = category,
           error: error => console.error("Cette catégorie n'existe pas")
         }))
-        this.movie.actors.forEach(idActor => {
-          this.sub.add(this.actorService.getByid(idActor).subscribe({
-            next: actor => this.actors.push(actor),
-            error: error => console.error("Cet acteur n'existe pas")
-          }))
-        })
+
+        if(this.movie.actors != null){
+          this.movie.actors.forEach(idActor => {
+            this.sub.add(this.actorService.getByid(idActor).subscribe({
+              next: actor => this.actors.push(actor),
+              error: error => console.error("Cet acteur n'existe pas")
+            }))
+          })
+        }
+
       },
       error: error => console.error(error)
     }))

@@ -4,6 +4,8 @@ import { MovieService } from '../../services/film-service';
 import { Subscription } from 'rxjs';
 import { Menu } from '../menu/menu';
 import { MovieDisplay } from '../movie-display/movie-display';
+import { User } from '../../models/user';
+import { LocalStorageService } from '../../services/local-storage-service';
 
 @Component({
   selector: 'app-accueil',
@@ -14,9 +16,11 @@ import { MovieDisplay } from '../movie-display/movie-display';
 export class Accueil {
   private sub:Subscription = new Subscription
   public movies:Movie[] = []
+  public user:User|null = { id: 0, login: "", password: "" }
 
   constructor(
-    private movieService:MovieService
+    private movieService:MovieService,
+    private localStorageService:LocalStorageService
   ){}
 
   ngOnInit(){
@@ -26,6 +30,8 @@ export class Accueil {
       },
       error: error => console.error(error)
     }))
+
+    this.user = this.localStorageService.getUser()
   }
 
   ngOnDestroy(){

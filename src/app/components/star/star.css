@@ -1,0 +1,8 @@
+mat-icon{
+    cursor: pointer;
+    transition: 0.5 all ease;
+}
+
+mat-icon:hover{
+    transform: scale(1.1);
+}

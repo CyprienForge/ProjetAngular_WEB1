@@ -1,0 +1,13 @@
+<div>
+    <h3>
+        Ajouter une note
+    </h3>
+
+    @if(rateNumber !== undefined){
+        <article>
+            @for(star of nbStarsArray() ; track star){
+                <app-star (sendNumberStar)="getNumberStar($event)" [movie]="movie" [indexStar]="star" [rate]="rateNumber ?? 0"></app-star>
+            }
+        </article>
+    }
+</div>
