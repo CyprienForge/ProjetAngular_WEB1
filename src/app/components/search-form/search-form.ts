@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormControlName, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Category } from '../../models/category';
-import { CategoryService } from '../../services/category-service';
+import { CategoryService } from '../../services/category/category-service';
 import { Subscription } from 'rxjs';
 import { Movie } from '../../models/movie';
 import { MovieService } from '../../services/movie/film-service';

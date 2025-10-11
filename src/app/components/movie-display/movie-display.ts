@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Movie } from '../../models/movie';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { CategoryService } from '../../services/category-service';
+import { CategoryService } from '../../services/category/category-service';
 import { Subscription } from 'rxjs';
 
 @Component({

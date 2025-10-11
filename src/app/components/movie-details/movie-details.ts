@@ -4,9 +4,9 @@ import { MovieService } from '../../services/movie/film-service';
 import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
 import { Actor } from '../../models/actor';
-import { ActorService } from '../../services/actor-service';
+import { ActorService } from '../../services/actor/actor-service';
 import { Category } from '../../models/category';
-import { CategoryService } from '../../services/category-service';
+import { CategoryService } from '../../services/category/category-service';
 import { Menu } from '../menu/menu';
 import { AddRate } from '../add-rate/add-rate';
 

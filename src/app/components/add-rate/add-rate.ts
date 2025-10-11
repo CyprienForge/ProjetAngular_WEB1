@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal, Signal, WritableSignal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Movie } from '../../models/movie';
 import { RateService } from '../../services/rate/rate-service';
@@ -18,7 +18,7 @@ export class AddRate {
   @Input() movie!:Movie
 
   private sub:Subscription = new Subscription()
-  public rateNumber:number|undefined = undefined
+  public rateNumber:WritableSignal<number|undefined> = signal(0)
   public nbStars = 5;
 
   public nbStarsArray(): number[] {
@@ -32,7 +32,7 @@ export class AddRate {
 
   getNumberStar(numberStar:number){
     console.log("Nouveau nombre d'étoiles : " + numberStar)
-    this.rateNumber = numberStar
+    this.rateNumber.set(numberStar)
   }
 
   ngOnInit(){
@@ -43,13 +43,13 @@ export class AddRate {
       next: rates => { 
         const existingRate = rates.find(r => r.idMovie === this.movie.id && r.idUser === currentUser.id);
         if(existingRate){
-          this.rateNumber = existingRate?.rate
+          this.rateNumber.set(existingRate?.rate)
         }else{
-          this.rateNumber = 0
+          this.rateNumber.set(0)
         }
       },
       error: error => {
-        this.rateNumber = 0;
+        this.rateNumber.set(0);
       }
     }))
   }
