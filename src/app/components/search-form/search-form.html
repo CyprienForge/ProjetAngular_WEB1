@@ -1,0 +1,24 @@
+<form [formGroup]="searchForm" (ngSubmit)="submit($event)">
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Titre</mat-label>
+        <input matInput type="text" formControlName="name" placeholder="Titre du film...">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Catégories</mat-label>
+        <mat-select formControlName="category">
+            @for(category of categories ; track category.id){
+            <mat-option [value]="category">
+                {{ category.label }}
+            </mat-option>
+            }
+        </mat-select>
+  </mat-form-field>
+
+  <div class="example-button-row">
+    <button matButton="elevated" [disabled]="searchForm.invalid">
+        Rechercher
+    </button>
+  </div>
+</form>

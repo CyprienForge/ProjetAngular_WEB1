@@ -1,0 +1,8 @@
+form{
+    display: block;
+    margin: auto;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

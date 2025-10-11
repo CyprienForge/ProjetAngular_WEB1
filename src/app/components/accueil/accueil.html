@@ -4,6 +4,8 @@
   Bonjour {{ user?.login }}
 </h2>
 
+<app-search-form (sendMovies)="getMoviesFilter($event)"></app-search-form>
+
 <ul>
   @if(movies.length == 0){
     <p>

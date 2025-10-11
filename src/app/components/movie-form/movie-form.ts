@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Movie } from '../../models/movie';
 import { Category } from '../../models/category';
 import { Actor } from '../../models/actor';
-import { MovieService } from '../../services/film-service';
+import { MovieService } from '../../services/movie/film-service';
 import { Subscription } from 'rxjs';
 import { CategoryService } from '../../services/category-service';
 import { ActorService } from '../../services/actor-service';

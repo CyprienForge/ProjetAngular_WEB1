@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../../services/film-service';
+import { MovieService } from '../../services/movie/film-service';
 import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
 import { Actor } from '../../models/actor';
