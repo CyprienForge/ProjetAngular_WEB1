@@ -4,7 +4,10 @@
   Bonjour {{ user?.login }}
 </h2>
 
-<app-search-form (sendMovies)="getMoviesFilter($event)"></app-search-form>
+<app-search-form 
+  [movies]="movies"
+  (sendMovies)="getMoviesFilter($event)">
+</app-search-form>
 
 <ul>
   @if(movies.length == 0){
@@ -13,7 +16,7 @@
     </p>
   }@else{
     @for(movie of movies ; track movie.id){
-      <app-movie-display [movie]="movie"></app-movie-display>
+      <app-movie-display (viewMovie)="getMovieView($event)" [movie]="movie"></app-movie-display>
     }
   }
 </ul>

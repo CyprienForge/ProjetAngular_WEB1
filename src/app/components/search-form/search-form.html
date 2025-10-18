@@ -8,13 +8,18 @@
     <mat-form-field appearance="fill">
         <mat-label>Catégories</mat-label>
         <mat-select formControlName="category">
+            <mat-option [value]="null">Aucune catégorie</mat-option>
             @for(category of categories ; track category.id){
             <mat-option [value]="category">
                 {{ category.label }}
             </mat-option>
             }
         </mat-select>
-  </mat-form-field>
+    </mat-form-field>
+
+    <mat-checkbox class="example-margin" formControlName="isView">
+        Vu
+    </mat-checkbox>
 
   <div class="example-button-row">
     <button matButton="elevated" [disabled]="searchForm.invalid">

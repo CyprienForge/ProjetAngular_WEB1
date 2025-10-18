@@ -7,6 +7,7 @@ import { MovieDisplay } from '../movie-display/movie-display';
 import { User } from '../../models/user';
 import { LocalStorageService } from '../../services/local-storage-service';
 import { SearchForm } from '../search-form/search-form';
+import { UIMovie } from '../../models/ui-movies';
 
 @Component({
   selector: 'app-accueil',
@@ -16,7 +17,7 @@ import { SearchForm } from '../search-form/search-form';
 })
 export class Accueil {
   private sub:Subscription = new Subscription
-  public movies:Movie[] = []
+  public movies:UIMovie[] = []
   public user:User|null = { id: 0, login: "", password: "" }
 
   constructor(
@@ -24,13 +25,24 @@ export class Accueil {
     private localStorageService:LocalStorageService
   ){}
 
-  getMoviesFilter(movies:Movie[]){
+  getMoviesFilter(movies:UIMovie[]){
     this.movies = movies
   }
+
+  getMovieView(movie: UIMovie) {
+    const index = this.movies.findIndex(m => m.id === movie.id);
+    if (index !== -1) {
+      this.movies[index].vu = movie.vu;
+    }
+
+    console.log(this.movies[index])
+  }
+
 
   ngOnInit(){
     this.sub.add(this.movieService.getAll().subscribe({
       next: movies => {
+        console.log(movies)
         this.movies = movies;
       },
       error: error => console.error(error)

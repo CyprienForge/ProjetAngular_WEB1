@@ -2,7 +2,7 @@
   <mat-card appearance="outlined">
     <mat-card-header     
             [routerLink]="['/movies', movie.id]" 
-            [style.color]="vu ? 'green' : 'black'"
+            [style.color]="movie.vu ? 'green' : 'black'"
     >
       <mat-card-title>
             {{ movie.name }} - {{ labelCategory }} 
