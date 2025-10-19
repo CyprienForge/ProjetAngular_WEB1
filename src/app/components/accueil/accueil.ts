@@ -8,6 +8,8 @@ import { User } from '../../models/user';
 import { LocalStorageService } from '../../services/local-storage-service';
 import { SearchForm } from '../search-form/search-form';
 import { UIMovie } from '../../models/ui-movies';
+import { Category } from '../../models/category';
+import { CategoryService } from '../../services/category/category-service';
 
 @Component({
   selector: 'app-accueil',
@@ -16,12 +18,14 @@ import { UIMovie } from '../../models/ui-movies';
   styleUrl: './accueil.css'
 })
 export class Accueil {
+  public categories : Category[] = [];
   private sub:Subscription = new Subscription
   public movies:UIMovie[] = []
   public user:User|null = { id: 0, login: "", password: "" }
 
   constructor(
     private movieService:MovieService,
+    private categoryService : CategoryService,
     private localStorageService:LocalStorageService
   ){}
 
@@ -38,15 +42,27 @@ export class Accueil {
     console.log(this.movies[index])
   }
 
+  loadCategories(){
+    this.categoryService.getAll().subscribe({
+      next: categories => this.categories = categories
+    });
+  }
+
+  ngAfterViewInit() {
+    if (this.categories.length === 0) {
+      this.loadCategories()
+    }
+  }
 
   ngOnInit(){
     this.sub.add(this.movieService.getAll().subscribe({
       next: movies => {
-        console.log(movies)
         this.movies = movies;
       },
       error: error => console.error(error)
     }))
+
+    this.loadCategories()
 
     this.user = this.localStorageService.getUser()
   }

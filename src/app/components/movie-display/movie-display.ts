@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CategoryService } from '../../services/category/category-service';
 import { Subscription } from 'rxjs';
 import { UIMovie } from '../../models/ui-movies';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-movie-display',
@@ -17,6 +18,7 @@ export class MovieDisplay {
   private sub:Subscription = new Subscription()
   public labelCategory:string = "";
 
+  @Input() categories :  Category[] = []
   @Input() movie!:UIMovie
   @Output() viewMovie:EventEmitter<UIMovie> = new EventEmitter<UIMovie>;
 
@@ -34,14 +36,11 @@ export class MovieDisplay {
   }
 
   ngOnInit(){
-    this.sub.add(this.categoryService.getById(this.movie.category).subscribe({
-      next: category => {
-        this.labelCategory = category.label
-      },
-      error: error => {
-        console.error('Catégorie inexistante ' + this.movie.category)
-      }
-    }))
+    const categorie : Category | undefined = this.categories.find((c) => c.id == this.movie.category)
+    if(categorie == undefined){
+      return;
+    }
+    this.labelCategory = categorie.label
   }
 
   ngOnDestroy(){

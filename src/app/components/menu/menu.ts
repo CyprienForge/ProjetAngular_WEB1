@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -11,5 +11,17 @@ import { RouterLink } from '@angular/router';
   styleUrl: './menu.css'
 })
 export class Menu {
+
+  constructor(
+    private router : Router
+  ){}
+
+  reload() {
+    if (this.router.url === '/accueil') {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/accueil']);
+      });
+    }
+  }
 
 }
